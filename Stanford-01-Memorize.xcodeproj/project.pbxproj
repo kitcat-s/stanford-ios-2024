@@ -7,18 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B1DBE00D2BE37EFE00869C54 /* stanford_ios_2024App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DBE00C2BE37EFE00869C54 /* stanford_ios_2024App.swift */; };
-		B1DBE00F2BE37EFE00869C54 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DBE00E2BE37EFE00869C54 /* ContentView.swift */; };
+		1BB7B5722D356F01006E7F99 /* MemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB7B5712D356F01006E7F99 /* MemoryGame.swift */; };
+		1BB7B5742D357167006E7F99 /* EmojiMemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB7B5732D357167006E7F99 /* EmojiMemoryGame.swift */; };
+		B1DBE00D2BE37EFE00869C54 /* MemorizeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DBE00C2BE37EFE00869C54 /* MemorizeApp.swift */; };
+		B1DBE00F2BE37EFE00869C54 /* EmojiMemoryGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DBE00E2BE37EFE00869C54 /* EmojiMemoryGameView.swift */; };
 		B1DBE0112BE37EFF00869C54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1DBE0102BE37EFF00869C54 /* Assets.xcassets */; };
 		B1DBE0142BE37EFF00869C54 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1DBE0132BE37EFF00869C54 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1B82ED672BE3CBEB00EB222B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		1B8678012BEC5DFA00942172 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = MyPlayground.playground; path = ../MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		B1DBE0092BE37EFE00869C54 /* stanford-ios-2024.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "stanford-ios-2024.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B1DBE00C2BE37EFE00869C54 /* stanford_ios_2024App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stanford_ios_2024App.swift; sourceTree = "<group>"; };
-		B1DBE00E2BE37EFE00869C54 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1BB7B5712D356F01006E7F99 /* MemoryGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGame.swift; sourceTree = "<group>"; };
+		1BB7B5732D357167006E7F99 /* EmojiMemoryGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMemoryGame.swift; sourceTree = "<group>"; };
+		B1DBE0092BE37EFE00869C54 /* Stanford-01-Memorize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stanford-01-Memorize.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1DBE00C2BE37EFE00869C54 /* MemorizeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorizeApp.swift; sourceTree = "<group>"; };
+		B1DBE00E2BE37EFE00869C54 /* EmojiMemoryGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMemoryGameView.swift; sourceTree = "<group>"; };
 		B1DBE0102BE37EFF00869C54 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B1DBE0132BE37EFF00869C54 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -37,30 +40,31 @@
 		B1DBE0002BE37EFE00869C54 = {
 			isa = PBXGroup;
 			children = (
-				1B8678012BEC5DFA00942172 /* MyPlayground.playground */,
-				B1DBE00B2BE37EFE00869C54 /* stanford-ios-2024 */,
+				B1DBE00B2BE37EFE00869C54 /* Stanford-01-Memorize */,
 				B1DBE00A2BE37EFE00869C54 /* Products */,
+				1B82ED672BE3CBEB00EB222B /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
 		B1DBE00A2BE37EFE00869C54 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B1DBE0092BE37EFE00869C54 /* stanford-ios-2024.app */,
+				B1DBE0092BE37EFE00869C54 /* Stanford-01-Memorize.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B1DBE00B2BE37EFE00869C54 /* stanford-ios-2024 */ = {
+		B1DBE00B2BE37EFE00869C54 /* Stanford-01-Memorize */ = {
 			isa = PBXGroup;
 			children = (
-				B1DBE00C2BE37EFE00869C54 /* stanford_ios_2024App.swift */,
-				B1DBE00E2BE37EFE00869C54 /* ContentView.swift */,
+				B1DBE00C2BE37EFE00869C54 /* MemorizeApp.swift */,
+				B1DBE00E2BE37EFE00869C54 /* EmojiMemoryGameView.swift */,
+				1BB7B5712D356F01006E7F99 /* MemoryGame.swift */,
+				1BB7B5732D357167006E7F99 /* EmojiMemoryGame.swift */,
 				B1DBE0102BE37EFF00869C54 /* Assets.xcassets */,
 				B1DBE0122BE37EFF00869C54 /* Preview Content */,
-				1B82ED672BE3CBEB00EB222B /* README.md */,
 			);
-			path = "stanford-ios-2024";
+			path = "Stanford-01-Memorize";
 			sourceTree = "<group>";
 		};
 		B1DBE0122BE37EFF00869C54 /* Preview Content */ = {
@@ -74,9 +78,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B1DBE0082BE37EFE00869C54 /* stanford-ios-2024 */ = {
+		B1DBE0082BE37EFE00869C54 /* Stanford-01-Memorize */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B1DBE0172BE37EFF00869C54 /* Build configuration list for PBXNativeTarget "stanford-ios-2024" */;
+			buildConfigurationList = B1DBE0172BE37EFF00869C54 /* Build configuration list for PBXNativeTarget "Stanford-01-Memorize" */;
 			buildPhases = (
 				B1DBE0052BE37EFE00869C54 /* Sources */,
 				B1DBE0062BE37EFE00869C54 /* Frameworks */,
@@ -86,9 +90,9 @@
 			);
 			dependencies = (
 			);
-			name = "stanford-ios-2024";
+			name = "Stanford-01-Memorize";
 			productName = "stanford-ios-2024";
-			productReference = B1DBE0092BE37EFE00869C54 /* stanford-ios-2024.app */;
+			productReference = B1DBE0092BE37EFE00869C54 /* Stanford-01-Memorize.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -106,7 +110,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B1DBE0042BE37EFE00869C54 /* Build configuration list for PBXProject "stanford-ios-2024" */;
+			buildConfigurationList = B1DBE0042BE37EFE00869C54 /* Build configuration list for PBXProject "Stanford-01-Memorize" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -119,7 +123,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B1DBE0082BE37EFE00869C54 /* stanford-ios-2024 */,
+				B1DBE0082BE37EFE00869C54 /* Stanford-01-Memorize */,
 			);
 		};
 /* End PBXProject section */
@@ -141,8 +145,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1DBE00F2BE37EFE00869C54 /* ContentView.swift in Sources */,
-				B1DBE00D2BE37EFE00869C54 /* stanford_ios_2024App.swift in Sources */,
+				1BB7B5722D356F01006E7F99 /* MemoryGame.swift in Sources */,
+				B1DBE00F2BE37EFE00869C54 /* EmojiMemoryGameView.swift in Sources */,
+				B1DBE00D2BE37EFE00869C54 /* MemorizeApp.swift in Sources */,
+				1BB7B5742D357167006E7F99 /* EmojiMemoryGame.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,7 +281,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"stanford-ios-2024/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Stanford-01-Memorize/Preview Content\"";
 				DEVELOPMENT_TEAM = 8GF88PBK7J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -289,7 +295,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "heyki.stanford-ios-2024";
+				PRODUCT_BUNDLE_IDENTIFIER = "kitcat.Stanford-01-Memorize";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -304,7 +310,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"stanford-ios-2024/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Stanford-01-Memorize/Preview Content\"";
 				DEVELOPMENT_TEAM = 8GF88PBK7J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -318,7 +324,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "heyki.stanford-ios-2024";
+				PRODUCT_BUNDLE_IDENTIFIER = "kitcat.Stanford-01-Memorize";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -329,7 +335,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B1DBE0042BE37EFE00869C54 /* Build configuration list for PBXProject "stanford-ios-2024" */ = {
+		B1DBE0042BE37EFE00869C54 /* Build configuration list for PBXProject "Stanford-01-Memorize" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B1DBE0152BE37EFF00869C54 /* Debug */,
@@ -338,7 +344,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B1DBE0172BE37EFF00869C54 /* Build configuration list for PBXNativeTarget "stanford-ios-2024" */ = {
+		B1DBE0172BE37EFF00869C54 /* Build configuration list for PBXNativeTarget "Stanford-01-Memorize" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B1DBE0182BE37EFF00869C54 /* Debug */,
