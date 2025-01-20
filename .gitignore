@@ -36,6 +36,7 @@ Temporary Items
 
 ### Xcode ###
 ## User settings
+*.xcuserstate
 xcuserdata/
 
 ## Xcode 8 and earlier
