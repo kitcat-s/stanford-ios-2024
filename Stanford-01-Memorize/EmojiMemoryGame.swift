@@ -13,21 +13,24 @@ class EmojiMemoryGame: ObservableObject {
     private static let emojis = ["1", "2", "3", "4", "5", "6", "7"]
     
     private static func createMemoryGame() -> MemoryGame<String> {
-        // Create a game assigning the pair.
-        return MemoryGame(numberOfPairsOfCards: 9) { pairIndex in // Providing the card contents as a closure type.
+        // Create a game specifying how many pairs of cards the game will have.
+        return MemoryGame(numberOfPairsOfCards: 6) { pairIndex in // Providing the card contents as a closure type.
+            // If the pairs are within the emojis array indices
             if emojis.indices.contains(pairIndex) {
                 return emojis[pairIndex]
             } else {
+                // If the game has more.
                 return "⁉"
             }
         }
     }
     
-    // Initialize a game as a variable.
+    // Initialize a game as a variable,
+    // publishing the game so the view will notice when it changes
     @Published private var model = createMemoryGame()
     
     var cards: Array<MemoryGame<String>.Card> {
-        return model.cards
+        model.cards
     }
     
     // MARK: - Intents
@@ -39,9 +42,3 @@ class EmojiMemoryGame: ObservableObject {
         model.choose(card)
     }
 }
-
-/*
- To-do list
- [x] Write a function to create a model and initialize the model by assigning it as a 'model'
- 
-*/

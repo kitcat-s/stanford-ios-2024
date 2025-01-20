@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct EmojiMemoryGameView: View {
+    // Observe the ViewModel to know when to redraw the View.
     @ObservedObject var viewModel: EmojiMemoryGame
     
     var body: some View {
         VStack {
             ScrollView {
                 cards
+                    .animation(.default, value: viewModel.cards)
             }
             .padding(12)
             Button("Suffle") {
@@ -24,10 +26,23 @@ struct EmojiMemoryGameView: View {
     
     var cards: some View {
         LazyVGrid(columns: [GridItem(.adaptive(minimum: 85), spacing: 0)], spacing: 0) {
-            ForEach(viewModel.cards.indices, id: \.self) { index in
+            // Iterating through the cards by their IDs, as marked within this view, prevents tracking the original and destination positions during shuffling.
+            /*
+             ForEach(viewModel.cards.indices, id: \.self) { index in
                 CardView(viewModel.cards[index])
                     .aspectRatio(3/4, contentMode: .fit)
                     .padding(4)
+            }
+             */
+            
+            // Iterating through the cards by their IDs from the ViewModel enables the card to have the flying animation rather than a boring fade in & out.
+            ForEach(viewModel.cards) { card in
+                VStack(spacing: 0) {
+                    CardView(card)
+                        .aspectRatio(3/4, contentMode: .fit)
+                        .padding(4)
+                    Text(card.id)
+                }
             }
         }
         .foregroundColor(.blue)
@@ -69,17 +84,3 @@ struct CardView: View {
 #Preview {
     EmojiMemoryGameView(viewModel: EmojiMemoryGame())
 }
-
-
-
-/*
- To-do list
- 1.
- 
- Today's Keyword
- -
- 
- Today's Lesson
- - Struct in functional programming VS class in object-oriented programming
- - Array types: String, Int...
- */
