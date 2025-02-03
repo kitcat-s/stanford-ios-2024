@@ -37,12 +37,12 @@ struct EmojiMemoryGameView: View {
             
             // Iterating through the cards by their IDs from the ViewModel enables the card to have the flying animation rather than a boring fade in & out.
             ForEach(viewModel.cards) { card in
-                VStack(spacing: 0) {
-                    CardView(card)
-                        .aspectRatio(3/4, contentMode: .fit)
-                        .padding(4)
-                    Text(card.id)
-                }
+                CardView(card)
+                    .aspectRatio(3/4, contentMode: .fit)
+                    .padding(4)
+                    .onTapGesture {
+                        viewModel.choose(card)
+                    }
             }
         }
         .foregroundColor(.blue)
@@ -72,6 +72,7 @@ struct CardView: View {
             base.fill().opacity(card.isFaceUp ? 0 : 1)
             base.stroke(style: StrokeStyle(lineWidth: 2))
         }
+        .opacity(card.isFaceUp || !card.isMatched ? 1 : 0.1)
     }
 }
 
