@@ -28,33 +28,12 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
     
     // A variable to determine when to verify the matching state.
     var indexOfTheOneAndOnlyCard: Int? {
-        get {
-            var faceUpCardIndices = [Int]()
-            for index in cards.indices {
-                if cards[index].isFaceUp {
-                    faceUpCardIndices.append(index)
-                }
-            }
-            
-            if faceUpCardIndices.count == 1 {
-                return faceUpCardIndices.first
-            } else {
-                return nil
-            }
-        }
+        get { cards.indices.filter { index in cards[index].isFaceUp }.only }
         
         // When a value is set to indexOfTheOneAndOnlyCard,
         // iterate through the cards array and update the isFaceUp status.
         // This setter doesn't run unless the value of indexOfTheOneAndOnlyCard gets changed.
-        set {
-            for index in cards.indices {
-                if index == newValue {
-                    cards[index].isFaceUp = true
-                } else {
-                    cards[index].isFaceUp = false
-                }
-            }
-        }
+        set { cards.indices.forEach { cards[$0].isFaceUp = ($0 == newValue) } }
     }
     
     mutating func choose(_ card: Card) {
@@ -95,5 +74,11 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         
         var id: String
         var debugDescription: String { "\(isMatched ? "_" : "\(id): \(content) \(isFaceUp ? "up" : "down")")" }
+    }
+}
+
+extension Array {
+    var only: Element? {
+        count == 1 ? first : nil
     }
 }
