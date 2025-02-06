@@ -12,15 +12,16 @@ struct EmojiMemoryGameView: View {
     @ObservedObject var viewModel: EmojiMemoryGame
     
     var body: some View {
-        VStack {
+        VStack(spacing: 12) {
+            HeaderView()
             ScrollView {
                 cards
                     .animation(.default, value: viewModel.cards)
             }
-            .padding(12)
-            Button("Suffle") {
-                viewModel.shuffle()
-            }
+            .padding(.horizontal, 12)
+        }
+        .onAppear {
+            viewModel.shuffle()
         }
     }
     
@@ -45,7 +46,7 @@ struct EmojiMemoryGameView: View {
                     }
             }
         }
-        .foregroundColor(.blue)
+        .foregroundColor(viewModel.getColor())
     }
 }
 
@@ -76,7 +77,43 @@ struct CardView: View {
     }
 }
 
+struct HeaderView: View {
+    var body: some View {
+        VStack(spacing: 8) {
+            ZStack {
+                Text("Theme Title")
+                    .font(.largeTitle)
+                Button {
+                    print("New Game")
+                } label: {
+                    Spacer()
+                    Image(systemName: "plus.app")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .foregroundStyle(.black)
+                        .frame(width: 24)
+                        .padding(.trailing)
+                }
+            }
+            ScoreView()
+        }
+    }
+}
 
+struct ScoreView: View {
+    var body: some View {
+        Text("Score")
+            .font(.system(size: 18))
+            .bold()
+            .padding(.vertical, 4)
+            .padding(.horizontal, 12)
+            .overlay(content: {
+                RoundedRectangle(cornerRadius: 15)
+                    .stroke(lineWidth: 2)
+            })
+            .foregroundStyle(.black)
+    }
+}
 
 
 

@@ -11,11 +11,12 @@ import Foundation
 struct MemoryGame<CardContent> where CardContent: Equatable {
     private(set) var cards: [Card] // Allowing external reading only by keeping the set private
     
-    init(numberOfPairsOfCards: Int, cardContentFactory: (Int) -> CardContent) {
+    init(numberOfPairsOfCards: Int, theme: Theme, cardContentFactory: (Int) -> CardContent) {
         // Create an empty array of cards
         cards = []
         // Adding maching pairs according to the given number in the initialization, iterating through a card content array.
-        for pairIndex in 0 ..< max(2, numberOfPairsOfCards) { // Making sure that at least 2 pairs of cards should exist, even if the ViewModel calls the game with only 1 pair.
+        for pairIndex in 0 ..< max(2, numberOfPairsOfCards) {
+            // Making sure that at least 2 pairs of cards exist, even if the ViewModel calls the game with only 1 pair.
             let content = cardContentFactory(pairIndex)
             cards.append(Card(content: content, id: "\(pairIndex + 1)a"))
             cards.append(Card(content: content, id: "\(pairIndex + 1)b"))
@@ -74,6 +75,28 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         
         var id: String
         var debugDescription: String { "\(isMatched ? "_" : "\(id): \(content) \(isFaceUp ? "up" : "down")")" }
+    }
+}
+
+struct Theme {
+    var name: String
+    var numberOfPairsOfCards: Int
+    var emojis: [String]
+    var color: String
+}
+
+struct Themes {
+    static var themeList: [Theme] = [
+        Theme(name: "Flowers", numberOfPairsOfCards: 6, emojis: ["🌹", "🌸", "🌺", "🌻", "🪷", "🪻"], color: "pink"),
+        Theme(name: "Animals", numberOfPairsOfCards: 6, emojis: ["🐶", "🐱", "🐯", "🐴", "🐻", "🐸"], color: "green"),
+        Theme(name: "Fruits", numberOfPairsOfCards: 6, emojis: ["🍎", "🍌", "🍉", "🍇", "🍒", "🥭"], color: "red"),
+        Theme(name: "Weather", numberOfPairsOfCards: 6, emojis: ["☀️", "🌧", "⛄️", "🌪", "🌈", "☁️"], color: "blue"),
+        Theme(name: "Sports", numberOfPairsOfCards: 6, emojis: ["⚽️", "🏀", "🏈", "🎾", "🏐", "🏓"], color: "orange"),
+        Theme(name: "Vehicles", numberOfPairsOfCards: 6, emojis: ["🚗", "🚕", "🚙", "🚑", "🚜", "🚲"], color: "gray")
+    ]
+    
+    static func getTheme() -> Theme {
+        return themeList.randomElement()!
     }
 }
 
