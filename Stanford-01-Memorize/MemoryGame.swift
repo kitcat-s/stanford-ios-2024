@@ -95,9 +95,7 @@ struct Themes {
         Theme(name: "Vehicles", numberOfPairsOfCards: 6, emojis: ["🚗", "🚕", "🚙", "🚑", "🚜", "🚲"], color: "gray")
     ]
     
-    static func getTheme() -> Theme {
-        return themeList.randomElement()!
-    }
+    static func getTheme() -> Theme { themeList.randomElement()! }
 }
 
 extension Array {

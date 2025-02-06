@@ -13,10 +13,9 @@ struct EmojiMemoryGameView: View {
     
     var body: some View {
         VStack(spacing: 12) {
-            HeaderView()
+            HeaderView(viewModel: viewModel)
             ScrollView {
-                cards
-                    .animation(.default, value: viewModel.cards)
+                cards.animation(.default, value: viewModel.cards)
             }
             .padding(.horizontal, 12)
         }
@@ -40,7 +39,7 @@ struct EmojiMemoryGameView: View {
             ForEach(viewModel.cards) { card in
                 CardView(card)
                     .aspectRatio(3/4, contentMode: .fit)
-                    .padding(4)
+                    .padding(6)
                     .onTapGesture {
                         viewModel.choose(card)
                     }
@@ -78,13 +77,15 @@ struct CardView: View {
 }
 
 struct HeaderView: View {
+    var viewModel: EmojiMemoryGame
+    
     var body: some View {
         VStack(spacing: 8) {
             ZStack {
-                Text("Theme Title")
+                Text(viewModel.getTitle())
                     .font(.largeTitle)
                 Button {
-                    print("New Game")
+                    viewModel.loadNewGame()
                 } label: {
                     Spacer()
                     Image(systemName: "plus.app")
