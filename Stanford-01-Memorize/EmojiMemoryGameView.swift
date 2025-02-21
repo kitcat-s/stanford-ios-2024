@@ -26,15 +26,6 @@ struct EmojiMemoryGameView: View {
     
     var cards: some View {
         LazyVGrid(columns: [GridItem(.adaptive(minimum: 85), spacing: 0)], spacing: 0) {
-            // Iterating through the cards by their IDs, as marked within this view, prevents tracking the original and destination positions during shuffling.
-            /*
-             ForEach(viewModel.cards.indices, id: \.self) { index in
-                CardView(viewModel.cards[index])
-                    .aspectRatio(3/4, contentMode: .fit)
-                    .padding(4)
-            }
-             */
-            
             // Iterating through the cards by their IDs from the ViewModel enables the card to have the flying animation rather than a boring fade in & out.
             ForEach(viewModel.cards) { card in
                 CardView(card)
@@ -77,12 +68,14 @@ struct CardView: View {
 }
 
 struct HeaderView: View {
-    var viewModel: EmojiMemoryGame
+    @ObservedObject var viewModel: EmojiMemoryGame
+    var currentTheme: Theme = randomTheme
     
     var body: some View {
+        
         VStack(spacing: 8) {
             ZStack {
-                Text(viewModel.getTitle())
+                Text(currentTheme.name)
                     .font(.largeTitle)
                 Button {
                     viewModel.loadNewGame()
@@ -96,14 +89,16 @@ struct HeaderView: View {
                         .padding(.trailing)
                 }
             }
-            ScoreView()
+            ScoreView(viewModel: viewModel)
         }
     }
 }
 
 struct ScoreView: View {
+    @ObservedObject var viewModel: EmojiMemoryGame
+    
     var body: some View {
-        Text("Score")
+        Text(String(viewModel.score))
             .font(.system(size: 18))
             .bold()
             .padding(.vertical, 4)

@@ -14,13 +14,27 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
     init(numberOfPairsOfCards: Int, theme: Theme, cardContentFactory: (Int) -> CardContent) {
         // Create an empty array of cards
         cards = []
+        
+        // Randomly select emojis from the Theme and add them to a set to prevent duplication.
+        var cardIndices: Set<Int> = []
+        while cardIndices.count < numberOfPairsOfCards {
+            cardIndices.insert(Int.random(in: 0 ..< theme.emojis.count))
+        }
+        
         // Adding maching pairs according to the given number in the initialization, iterating through a card content array.
-        for pairIndex in 0 ..< max(2, numberOfPairsOfCards) {
-            // Making sure that at least 2 pairs of cards exist, even if the ViewModel calls the game with only 1 pair.
+        // Making sure that at least 2 pairs of cards exist, even if the ViewModel calls the game with only 1 pair.
+        for pairIndex in cardIndices {
             let content = cardContentFactory(pairIndex)
             cards.append(Card(content: content, id: "\(pairIndex + 1)a"))
             cards.append(Card(content: content, id: "\(pairIndex + 1)b"))
         }
+    }
+    
+    private(set) var score: Int = 0
+    
+    mutating func updateScore(_ offset: Int) {
+        score += offset
+        print("\(score - offset) + \(offset) = \(score)")
     }
     
     mutating func shuffle() {
@@ -49,6 +63,16 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
                     if cards[chosenIndex].content == cards[previouslyChosenIndex].content {
                         cards[chosenIndex].isMatched = true
                         cards[previouslyChosenIndex].isMatched = true
+                        updateScore(2)
+                    } else {
+                        if cards[chosenIndex].isAlreadySeen == false && cards[previouslyChosenIndex].isAlreadySeen == false {
+                            cards[chosenIndex].isAlreadySeen = true
+                            cards[previouslyChosenIndex].isAlreadySeen = true
+                        } else if cards[chosenIndex].isAlreadySeen == true && cards[previouslyChosenIndex].isAlreadySeen == true {
+                            updateScore(-2)
+                        } else if cards[chosenIndex].isAlreadySeen == true || cards[previouslyChosenIndex].isAlreadySeen == true {
+                            updateScore(-1)
+                        }
                     }
                 } else {
                     // If not, it is the first flip. Therefore update the indexOfTheOneAndOnlyCard, preparing for the second flip.
@@ -71,10 +95,11 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         
         var isFaceUp = false
         var isMatched = false
+        var isAlreadySeen = false
         let content: CardContent // The type to be decided when it's called.
         
         var id: String
-        var debugDescription: String { "\(isMatched ? "_" : "\(id): \(content) \(isFaceUp ? "up" : "down")")" }
+        var debugDescription: String { "\(isMatched ? "_" : "\(id): \(content) \(isFaceUp ? "up" : "down")") \(isAlreadySeen ? "seen" : "")" }
     }
 }
 
@@ -89,13 +114,15 @@ struct Themes {
     static var themeList: [Theme] = [
         Theme(name: "Flowers", numberOfPairsOfCards: 6, emojis: ["🌹", "🌸", "🌺", "🌻", "🪷", "🪻"], color: "pink"),
         Theme(name: "Animals", numberOfPairsOfCards: 6, emojis: ["🐶", "🐱", "🐯", "🐴", "🐻", "🐸"], color: "green"),
-        Theme(name: "Fruits", numberOfPairsOfCards: 6, emojis: ["🍎", "🍌", "🍉", "🍇", "🍒", "🥭"], color: "red"),
+        Theme(name: "Fruits", numberOfPairsOfCards: 6, emojis: ["🍎", "🍌", "🍉", "🍇", "🍒", "🥭"], color: "yellow"),
         Theme(name: "Weather", numberOfPairsOfCards: 6, emojis: ["☀️", "🌧", "⛄️", "🌪", "🌈", "☁️"], color: "blue"),
         Theme(name: "Sports", numberOfPairsOfCards: 6, emojis: ["⚽️", "🏀", "🏈", "🎾", "🏐", "🏓"], color: "orange"),
         Theme(name: "Vehicles", numberOfPairsOfCards: 6, emojis: ["🚗", "🚕", "🚙", "🚑", "🚜", "🚲"], color: "gray")
     ]
     
-    static func getTheme() -> Theme { themeList.randomElement()! }
+    static func getTheme() -> Theme {
+        return themeList.randomElement()!
+    }
 }
 
 extension Array {
