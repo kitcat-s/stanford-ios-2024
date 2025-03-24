@@ -69,14 +69,14 @@ struct CardView: View {
 
 struct HeaderView: View {
     @ObservedObject var viewModel: EmojiMemoryGame
-    var currentTheme: Theme = randomTheme
+//    var currentTheme: Theme = viewModel.randomTheme
     
     var body: some View {
         
         VStack(spacing: 8) {
             ZStack {
-                Text(currentTheme.name)
-                    .font(.largeTitle)
+//                Text(currentTheme.name)
+//                    .font(.largeTitle)
                 Button {
                     viewModel.loadNewGame()
                 } label: {
