@@ -69,14 +69,12 @@ struct CardView: View {
 
 struct HeaderView: View {
     @ObservedObject var viewModel: EmojiMemoryGame
-//    var currentTheme: Theme = viewModel.randomTheme
     
     var body: some View {
-        
         VStack(spacing: 8) {
             ZStack {
-//                Text(currentTheme.name)
-//                    .font(.largeTitle)
+                Text("Memorize \(viewModel.getTitle())!")
+                    .font(.largeTitle)
                 Button {
                     viewModel.loadNewGame()
                 } label: {
@@ -98,16 +96,21 @@ struct ScoreView: View {
     @ObservedObject var viewModel: EmojiMemoryGame
     
     var body: some View {
-        Text(String(viewModel.score))
-            .font(.system(size: 18))
-            .bold()
-            .padding(.vertical, 4)
-            .padding(.horizontal, 12)
-            .overlay(content: {
-                RoundedRectangle(cornerRadius: 15)
-                    .stroke(lineWidth: 2)
-            })
-            .foregroundStyle(.black)
+        HStack {
+            Text("Score")
+                .bold()
+                .textCase(.uppercase)
+            Text(String(viewModel.score))
+                .font(.system(size: 18))
+                .bold()
+                .padding(.vertical, 4)
+                .padding(.horizontal, 12)
+                .overlay(content: {
+                    RoundedRectangle(cornerRadius: 15)
+                        .stroke(lineWidth: 2)
+                })
+                .foregroundStyle(.black)
+        }
     }
 }
 
